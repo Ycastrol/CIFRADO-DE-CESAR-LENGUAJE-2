@@ -3,15 +3,14 @@
 #include <fstream>
 #include <sstream>
 #include "CodCesar.h"
-
-using namespace std;
-
-
+using namespace std; 
+  
 int main() { 
-	int bandera=0,size,n;
-	char *Archivo;
-	CodCesar variable;
+    int n,bandera=0,size;
+	char *Archivo; 
+    CodCesar variable;
 	string  numerotemporal,respuesta,cadena,NomArchivo;
+    
 	do{
 		do{
 			fflush(stdin);
@@ -24,8 +23,8 @@ int main() {
 		    cout<<"\tº B) Decodificar los mensajes ocultos en los archivos.   º\n";
 		    cout<<"\tº C) Salir.                                              º\n";
 		    cout<<"\tº________________________________________________________º\n";
-		    cout<<" Opcion:";
-		    cin>>respuesta;
+		    cout<<"\n Opcion:";
+		    cin>>respuesta;						
 			size=respuesta.size();
 			if(size>1){
 				cout<<"OPCION INVALIDA"<<endl;
@@ -38,7 +37,7 @@ int main() {
 			}
 		    system("pause");
 		    system("cls");
-		}while(bandera==1);    
+		}while(bandera==1);
 			
 		if(respuesta[0]==97 || respuesta[0]==65){
 			do{
@@ -50,30 +49,26 @@ int main() {
 			    for(int x=0;x<size;x++){
 			    	if ((NomArchivo[x]=='|' || NomArchivo[x]=='<'|| NomArchivo[x]=='?' || NomArchivo[x]=='*'|| NomArchivo[x]=='>'|| NomArchivo[x]=='"' || NomArchivo[x]=='/' ||NomArchivo[x]==':' ) && bandera==0){
 			    		cout<<"Este nombre no puede tener ninguno de estos caracteres\n";
-						cout<<"caracteres invalidos:  <,>,?,:,|,/,*,\"  ";	
+						cout<<"caracteres invalidos: <,>,?,:,|,/,*,\" ";	
 			    		system("pause");
 			    		system("cls");
 						bandera=1;
 					}
-				}	
-					    
+				}		    
 			}while(bandera==1);
 		    Archivo=strdup(NomArchivo.c_str());
 		    do{
 				bandera=0;
 				cout << "Introduce el numero de desplazamiento deseado: "; 
 			    cin >> numerotemporal; 
-				size=numerotemporal.size();
-				    
+				size=numerotemporal.size(); 
 				for(int x=0;x<size;x++){
-					
 				    if(numerotemporal[x]<48 || numerotemporal[x]>57){
 				    	bandera=1;
 				    	cout<<"DATO INVALIDO\n";
 					}
 					else{
-						istringstream(numerotemporal)>>n;
-						
+						istringstream(numerotemporal)>>n;	
 					}
 				}
 			}while(bandera==1);
@@ -82,9 +77,9 @@ int main() {
 		    cout << "Ingrese su mensaje a ocultar\npara finalizar, escriba :SACAME en la ultima linea\n\n" << endl; 
 		    ofstream VaciarArchivo(Archivo,std::ios::trunc);
 		    VaciarArchivo.close();
+			
 			do{
 			    getline(cin, cadena); 
-			    
 				if(cadena==""){
 			    	cadena=" ";
 				}
@@ -92,7 +87,6 @@ int main() {
 		    		bandera=1;
 					cadena="";
 				}	
-			
 				variable.TextoCodificar(-(variable.getNumero()), cadena); 
 				variable.setMensaje(cadena);
 			    ofstream LlenarArchivo(Archivo,std::ios::app);
@@ -108,7 +102,7 @@ int main() {
 		 	LeerArchivo.clear();
 			LeerArchivo.close();
 			system("pause");	
-			system("cls");
+			system("cls");	
 		}
 		
 		if(respuesta[0]==98 || respuesta[0]==66){
@@ -139,14 +133,12 @@ int main() {
 					size=numerotemporal.size();
 					    
 					for(int x=0;x<size;x++){
-						
 					    if(numerotemporal[x]<48 || numerotemporal[x]>57){
 					    	bandera=1;
 					    	cout<<"DATO INVALIDO\n";
 						}
 						else{
-							istringstream(numerotemporal)>>n;
-							
+							istringstream(numerotemporal)>>n;	
 						}
 					}
 				}while(bandera==1);
@@ -155,16 +147,14 @@ int main() {
 			 	while(getline(MostrarTexto,salida)) {
 			 		variable.TextoDecodificar(variable.getNumero(), salida);
 			  		cout << salida<<endl;
-			 	}	
+			 	}
 			}else{
 				cout<<"\nEL ARCHIVO NO SE ENCONTRO\n\n";
 			}
 			system("pause");	
-			system("cls");
+			system("cls");	
 		}
-		if(respuesta[0]==99 || respuesta[0]==67){
-			return 0;
-		}
-	}while(respuesta[0]!=99 && respuesta[0]!=67);
-	return 0;
+	}while(respuesta[0]!=99&& respuesta[0]!=67);
+ 	cout<<"MUCHAS GRACIAS...\nADIOS\n\n";
+ 	system("PAUSE");
 } 
