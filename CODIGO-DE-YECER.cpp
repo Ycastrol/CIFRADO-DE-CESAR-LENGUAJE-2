@@ -6,7 +6,7 @@
 
 using namespace std;
 
-  
+
 int main() { 
 	int bandera=0,size,n;
 	char *Archivo;
