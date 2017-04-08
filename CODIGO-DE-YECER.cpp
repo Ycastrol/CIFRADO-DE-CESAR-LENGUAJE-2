@@ -175,9 +175,9 @@ int main() {
 			system("pause");	
 			system("cls");
 		}
-		
-		
-	
+		if(respuesta[0]==99 || respuesta[0]==67){
+			return 0;
+		}
 	}while(respuesta[0]!=99 && respuesta[0]!=67);
 	return 0;
 } 
