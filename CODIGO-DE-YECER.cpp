@@ -50,7 +50,7 @@ int main() {
 			    for(int x=0;x<size;x++){
 			    	if ((NomArchivo[x]=='|' || NomArchivo[x]=='<'|| NomArchivo[x]=='?' || NomArchivo[x]=='*'|| NomArchivo[x]=='>'|| NomArchivo[x]=='"' || NomArchivo[x]=='/' ||NomArchivo[x]==':' ) && bandera==0){
 			    		cout<<"Este nombre no puede tener ninguno de estos caracteres\n";
-						cout<<"caracteres invalidos: <,>,?,:,|,/,*,\" ";	
+						cout<<"caracteres invalidos:  <,>,?,:,|,/,*,\"  ";	
 			    		system("pause");
 			    		system("cls");
 						bandera=1;
@@ -82,9 +82,7 @@ int main() {
 		    cout << "Ingrese su mensaje a ocultar\npara finalizar, escriba :SACAME en la ultima linea\n\n" << endl; 
 		    ofstream VaciarArchivo(Archivo,std::ios::trunc);
 		    VaciarArchivo.close();
-			
 			do{
-			
 			    getline(cin, cadena); 
 			    
 				if(cadena==""){
@@ -100,13 +98,7 @@ int main() {
 			    ofstream LlenarArchivo(Archivo,std::ios::app);
 			    LlenarArchivo<<variable.getMensaje()<<endl;
 			    LlenarArchivo.close();
-		    
-		    
 		 	}while(bandera!=1);
-		
-		    
-		 
-		    
 		    ifstream LeerArchivo(Archivo);
 			string Leer;
 			cout<<"Mensaje Codificado:";
@@ -135,14 +127,11 @@ int main() {
 						bandera=1;
 					}
 				}
-		    
 			}while(bandera==1);
 		    Archivo=strdup(NomArchivo.c_str());
 			ifstream MostrarTexto(Archivo);
-			
 			if(MostrarTexto.is_open()){
 				string salida;
-				
 				do{
 					bandera=0;
 					cout << "Introduce el numero de desplazamiento deseado:"; 
@@ -162,13 +151,11 @@ int main() {
 					}
 				}while(bandera==1);
 				variable.setNumero(n);
-				
 				cout<<"Texto Revelado:";
 			 	while(getline(MostrarTexto,salida)) {
 			 		variable.TextoDecodificar(variable.getNumero(), salida);
 			  		cout << salida<<endl;
-			 	}
-					
+			 	}	
 			}else{
 				cout<<"\nEL ARCHIVO NO SE ENCONTRO\n\n";
 			}
