@@ -14,6 +14,8 @@ int main() {
 	string  numerotemporal,respuesta,cadena,NomArchivo;
 	do{
 		do{
+			fflush(stdin);
+		    bandera=0;
 		    cout<<"\t_________________________________________________________\n";
 		    cout<<"\tº CODIFICACION Y DECODIFICACION DE ARCHIVOS!!!!!.        º\n";
 		    cout<<"\tº Seleccione la accion que desee tomar:                  º\n";
@@ -118,7 +120,60 @@ int main() {
 		}
 		
 		if(respuesta[0]==98 || respuesta[0]==66){
-			cout<<"DECODIFICAR"<<endl;
+			do{
+		    	fflush(stdin);
+			    bandera=0;
+			    cout<<"Ingrese el Nombre del archivo que desea revelar:";
+			    getline(cin, NomArchivo);
+				size=NomArchivo.size();
+			    for(int x=0;x<size;x++){
+			    	if ((NomArchivo[x]=='|' || NomArchivo[x]=='<'|| NomArchivo[x]=='?' || NomArchivo[x]=='*'|| NomArchivo[x]=='>'|| NomArchivo[x]=='"' || NomArchivo[x]=='/' ||NomArchivo[x]==':' ) && bandera==0){
+			    		cout<<"Este nombre no puede tener ninguno de estos caracteres\n";
+						cout<<"caracteres invalidos: <,>,?,:,|,/,*,\" ";	
+			    		system("pause");
+			    		system("cls");
+						bandera=1;
+					}
+				}
+		    
+			}while(bandera==1);
+		    Archivo=strdup(NomArchivo.c_str());
+			ifstream MostrarTexto(Archivo);
+			
+			if(MostrarTexto.is_open()){
+				string salida;
+				
+				do{
+					bandera=0;
+					cout << "Introduce el numero de desplazamiento deseado:"; 
+				    cin >> numerotemporal; 
+					size=numerotemporal.size();
+					    
+					for(int x=0;x<size;x++){
+						
+					    if(numerotemporal[x]<48 || numerotemporal[x]>57){
+					    	bandera=1;
+					    	cout<<"DATO INVALIDO\n";
+						}
+						else{
+							istringstream(numerotemporal)>>n;
+							
+						}
+					}
+				}while(bandera==1);
+				variable.setNumero(n);
+				
+				cout<<"Texto Revelado:";
+			 	while(getline(MostrarTexto,salida)) {
+			 		variable.TextoDecodificar(variable.getNumero(), salida);
+			  		cout << salida<<endl;
+			 	}
+					
+			}else{
+				cout<<"\nEL ARCHIVO NO SE ENCONTRO\n\n";
+			}
+			system("pause");	
+			system("cls");
 		}
 		
 		
